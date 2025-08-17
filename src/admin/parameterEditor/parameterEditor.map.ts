@@ -11,7 +11,7 @@ export class ParameterEditor_Map extends ParameterEditor {
     private stateTemplate: HTMLTemplateElement;
     constructor(valueChangeCallback: IParameterEditorDelegate) {
         super(valueChangeCallback);
-        this.templateNode = createAndCloneTemplateElement(require('./parameterEditor.Map.inc.html'));
+        this.templateNode = createAndCloneTemplateElement(require('./parameterEditor.map.inc.html'));
 
         this.stateTemplate = this.templateNode.querySelector('#mappingRow');
         this.lastRow = this.templateNode.querySelector('#lastRow')
