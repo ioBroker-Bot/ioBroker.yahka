@@ -85,7 +85,6 @@
     "hap-nodejs-community-types/"
   ],
   "scripts": {
-    "test": "node node_modules/mocha/bin/mocha --exit",
     "build": "node tasks",
     "_prepublishOnly": "node tasks",
     "release": "release-script",
@@ -93,6 +92,12 @@
     "release-minor": "release-script minor --yes",
     "release-major": "release-script major --yes",
     "setupDev": "dev-server setup",
-    "startDev": "dev-server watch --no-start"
+    "startDev": "dev-server watch --no-start",
+    "test:ts": "mocha --config test/mocharc.custom.json src/**/*.test.ts",
+    "test:package": "mocha test/package --exit",
+    "test:integration": "mocha test/integration --exit",
+    "test": "npm run test:ts && npm run test:package",
+    "check": "tsc --noEmit",
+    "lint": "eslint -c eslint.config.mjs ."
   }
 }
