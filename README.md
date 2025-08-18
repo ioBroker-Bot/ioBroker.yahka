@@ -187,6 +187,9 @@ This repo includes one submodule, so before building you need to also close/init
 -->
 ## Changelog
 
+### **WORK IN PROGRESS**
+* (mcm1957) Standard test environment has been added.
+
 ### 1.1.5 (2025-07-09)
 * (tarikweiss) Updated version of hap-nodejs library to be compatible with Node 22.
 
