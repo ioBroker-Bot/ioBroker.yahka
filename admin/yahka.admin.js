@@ -110270,7 +110270,7 @@ exports.ConfigPageBuilder_IPCamera = ConfigPageBuilder_IPCamera;
   \*********************************************************************/
 /***/ ((module) => {
 
-module.exports = "<li class=\"collection-item\" style=\" background-color: #f0f0f0;\">\n    <div style=\"display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between\">\n        <div style=\"display: flex; flex-direction: row; align-items: center; gap: 5px; padding-top: 5px; padding-bottom: 5px\">\n            <i class=\"device-icon material-symbols-outlined circle\">mode_fan</i>\n            <div style=\"display: flex; flex-direction: column\">\n                <span class=\"list-title\"></span>\n                <span class=\"device-type\"></span>\n            </div>\n        </div>\n        <div class=\"device-actions\" style=\"display: flex; flex-wrap: nowrap; gap: 4px; justify-content: end\">\n            <button class=\"edit-button btn waves-effect waves-light\">\n                <span class=\"material-symbols-outlined\">edit</span>\n                <span class=\"hide-on-small-only translate\">Edit</span>\n            </button>\n            <button class=\"yahka_duplicate_device btn waves-effect waves-light\">\n                <span class=\"material-symbols-outlined\">content_copy</span>\n                <span class=\"hide-on-small-only translate\">Duplicate</span>\n            </button>\n            <button class=\"yahka_remove_device btn waves-effect waves-light red\">\n                <span class=\"material-symbols-outlined\">delete</span>\n                <span class=\"hide-on-small-only translate\">Remove</span>\n            </button>\n        </div>\n    </div>\n    <div class=\"collapsible-body\">\n    </div>\n</li>";
+module.exports = "<li class=\"collection-item\" style=\" background-color: #f0f0f0;\">\n    <div style=\"display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between\">\n        <div style=\"display: flex; flex-direction: row; align-items: center; gap: 5px; padding-top: 5px; padding-bottom: 5px\">\n            <i class=\"device-icon material-symbols-outlined circle\">mode_fan</i>\n            <div style=\"display: flex; flex-direction: column\">\n                <span class=\"list-title\"></span>\n                <span class=\"device-type\"></span>\n            </div>\n        </div>\n        <div class=\"device-actions\" style=\"display: flex; flex-wrap: nowrap; gap: 4px; justify-content: end\">\n            <button class=\"edit-button btn waves-effect waves-light\">\n                <span class=\"material-symbols-outlined\">edit</span>\n                <span class=\"hide-element translate\">Edit</span>\n            </button>\n            <button class=\"yahka_duplicate_device btn waves-effect waves-light\">\n                <span class=\"material-symbols-outlined\">content_copy</span>\n                <span class=\"hide-element translate\">Duplicate</span>\n            </button>\n            <button class=\"yahka_remove_device btn waves-effect waves-light red\">\n                <span class=\"material-symbols-outlined\">delete</span>\n                <span class=\"hide-element translate\">Remove</span>\n            </button>\n        </div>\n    </div>\n    <div class=\"collapsible-body\">\n    </div>\n</li>";
 
 /***/ }),
 
@@ -110317,6 +110317,7 @@ class ioBroker_YahkaPageBuilder {
         this._changeCallback = _changeCallback;
         this.pageBuilders = new Map();
         this._selectedDeviceConfig = undefined;
+        this.modalMode = false;
         if (!_bridgeSettings.devices) {
             _bridgeSettings.devices = [];
         }
@@ -110330,7 +110331,7 @@ class ioBroker_YahkaPageBuilder {
     }
     refreshInputs() {
         setTimeout(() => {
-            const devicePanel = document.querySelector('.yahka-edit-device-container');
+            const devicePanel = document.querySelector('.yahka-edit-device-container:not(.hide-element)');
             const selectElements = devicePanel.querySelectorAll('select');
             selectElements.forEach(selectElement => {
                 M.FormSelect.init(selectElement);
@@ -110348,10 +110349,34 @@ class ioBroker_YahkaPageBuilder {
     }
     bootstrap() {
         let bridgeFrame = document.querySelector('#yahka_bridge_frame');
+        let modalModeButton = document.querySelector('#modal-mode-switch');
+        modalModeButton.addEventListener('click', () => {
+            this.switchMode();
+        });
         this.deviceListHandler.buildDeviceList(bridgeFrame);
         this.buttonHandler.bindBridgeButtons(bridgeFrame);
         (0, admin_translation_1.translateFragment)(bridgeFrame);
         return bridgeFrame;
+    }
+    switchMode() {
+        this.modalMode = !this.modalMode;
+        let modalModeButton = document.querySelector('#modal-mode-switch');
+        let nonModalContainer = document.querySelector('#yahka-edit-device-container-non-modal');
+        let deviceList = document.querySelector('.device-list');
+        if (this.modalMode) {
+            nonModalContainer.classList.add('hide-element');
+            nonModalContainer.parentElement.classList.add('hide-element');
+            deviceList.classList.add('full-width');
+            modalModeButton.innerHTML = '<span class="translate">MODAL_MODE_DISABLE</span>';
+            (0, admin_translation_1.translateFragment)(modalModeButton);
+            return;
+        }
+        nonModalContainer.classList.remove('hide-element');
+        nonModalContainer.parentElement.classList.remove('hide-element');
+        deviceList.classList.remove('full-width');
+        modalModeButton.innerHTML = '<span class="translate">MODAL_MODE_ENABLE</span>';
+        (0, admin_translation_1.translateFragment)(modalModeButton);
+        this.refreshSelectedDeviceConfig();
     }
     rebuildDeviceList() {
         let bridgeFrame = document.querySelector('#yahka_bridge_frame');
@@ -110393,11 +110418,11 @@ class ioBroker_YahkaPageBuilder {
                 this.rebuildDeviceList();
             });
         }
-        const devicePanel = document.querySelector('.yahka-edit-device-container');
+        const devicePanel = document.querySelector('.yahka-edit-device-container:not(.hide-element)');
         if (devicePanel) {
             devicePanel.innerHTML = '';
         }
-        if (!modal.isOpen) {
+        if (!modal.isOpen && this.modalMode) {
             modal.open();
         }
         if (pageBuilder) {
@@ -110499,6 +110524,7 @@ class ioBroker_DeviceListHandler extends pageBuilder_base_1.ConfigPageBuilder_Ba
                             this.delegate.changeCallback();
                         }
                     }
+                    document.querySelector('.yahka-edit-device-container').innerHTML = '<div class="edit-placeholder">Click edit to edit device.</div>';
                 });
             }
             if (duplicateButton) {
@@ -111123,16 +111149,6 @@ exports.ConfigPageBuilder_ServicePanel = ConfigPageBuilder_ServicePanel;
 
 /***/ }),
 
-/***/ "./admin/parameterEditor/parameterEditor.Map.inc.html":
-/*!************************************************************!*\
-  !*** ./admin/parameterEditor/parameterEditor.Map.inc.html ***!
-  \************************************************************/
-/***/ ((module) => {
-
-module.exports = "<div class=\"editor-table\">\n    <div class=\"row padding5\">\n    </div>\n    <template id=\"mappingRow\">\n        <div class=\"card-panel\">\n            <div class=\"row\">\n                <div class=\"col s12\">\n                    <label>\n                        <input class=\"isSimpleValue\" type=\"checkbox\"/>\n                        <span class=\"translate\">is simple value</span>\n                    </label>\n                </div>\n                <div class=\"input-field col s12\">\n                    <label class=\"translate\">ioBroker Value</label>\n                    <input class=\"ioBrokerValue\" type=\"text\">\n                </div>\n                <div class=\"input-field col s12\">\n                    <label class=\"translate\">HomeKit Value</label>\n                    <input class=\"homekitValue\" type=\"text\">\n                </div>\n                <div class=\"col s12\">\n                    <button class=\"btn-flat moveUp\" type=\"button\"><i class=\"material-icons\">arrow_upward</i></button>\n                    <button class=\"btn-flat moveDown\" type=\"button\"><i class=\"material-icons\">arrow_downward</i></button>\n                    <button class=\"btn-flat delRow\" type=\"button\"><i class=\"material-icons\">delete</i></button>\n                </div>\n            </div>\n        </div>\n    </template>\n    <div id=\"lastRow\">\n        <button class=\"btn\" id=\"addRow\">\n            <span class=\"translate\">add new mapping</span>\n        </button>\n    </div>\n</div>\n";
-
-/***/ }),
-
 /***/ "./admin/parameterEditor/parameterEditor.base.ts":
 /*!*******************************************************!*\
   !*** ./admin/parameterEditor/parameterEditor.base.ts ***!
@@ -111453,6 +111469,16 @@ exports.ParameterEditor_HomeMatic_Dimmer = ParameterEditor_HomeMatic_Dimmer;
 
 /***/ }),
 
+/***/ "./admin/parameterEditor/parameterEditor.map.inc.html":
+/*!************************************************************!*\
+  !*** ./admin/parameterEditor/parameterEditor.map.inc.html ***!
+  \************************************************************/
+/***/ ((module) => {
+
+module.exports = "<div class=\"editor-table\">\n    <div class=\"row padding5\">\n    </div>\n    <template id=\"mappingRow\">\n        <div class=\"card-panel\">\n            <div class=\"row\">\n                <div class=\"col s12\">\n                    <label>\n                        <input class=\"isSimpleValue\" type=\"checkbox\"/>\n                        <span class=\"translate\">is simple value</span>\n                    </label>\n                </div>\n                <div class=\"input-field col s12\">\n                    <label class=\"translate\">ioBroker Value</label>\n                    <input class=\"ioBrokerValue\" type=\"text\">\n                </div>\n                <div class=\"input-field col s12\">\n                    <label class=\"translate\">HomeKit Value</label>\n                    <input class=\"homekitValue\" type=\"text\">\n                </div>\n                <div class=\"col s12\">\n                    <button class=\"btn-flat moveUp\" type=\"button\"><i class=\"material-icons\">arrow_upward</i></button>\n                    <button class=\"btn-flat moveDown\" type=\"button\"><i class=\"material-icons\">arrow_downward</i></button>\n                    <button class=\"btn-flat delRow\" type=\"button\"><i class=\"material-icons\">delete</i></button>\n                </div>\n            </div>\n        </div>\n    </template>\n    <div id=\"lastRow\">\n        <button class=\"btn\" id=\"addRow\">\n            <span class=\"translate\">add new mapping</span>\n        </button>\n    </div>\n</div>\n";
+
+/***/ }),
+
 /***/ "./admin/parameterEditor/parameterEditor.map.ts":
 /*!******************************************************!*\
   !*** ./admin/parameterEditor/parameterEditor.map.ts ***!
@@ -111472,7 +111498,7 @@ class ParameterEditor_Map extends parameterEditor_base_1.ParameterEditor {
     constructor(valueChangeCallback) {
         super(valueChangeCallback);
         this.stateRows = [];
-        this.templateNode = (0, admin_pageLoader_1.createAndCloneTemplateElement)(__webpack_require__(/*! ./parameterEditor.Map.inc.html */ "./admin/parameterEditor/parameterEditor.Map.inc.html"));
+        this.templateNode = (0, admin_pageLoader_1.createAndCloneTemplateElement)(__webpack_require__(/*! ./parameterEditor.map.inc.html */ "./admin/parameterEditor/parameterEditor.map.inc.html"));
         this.stateTemplate = this.templateNode.querySelector('#mappingRow');
         this.lastRow = this.templateNode.querySelector('#lastRow');
         let addRow = this.templateNode.querySelector('#addRow');

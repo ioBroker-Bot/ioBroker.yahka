@@ -37,7 +37,8 @@ body {
 
 #adapter-container {
     font-size: 1em;
-    /*height: 100%;*/
+    height: calc(100% - 20px);
+    padding: 10px;
 }
 
 .auto-scroll {
@@ -288,9 +289,64 @@ textarea.validationError {
 }
 
 .adapter-body {
-    overflow: auto !important;
+    overflow: revert !important;
 }
 
 .hide-element {
     display: none;
+}
+
+.vh-100 {
+    height: 100vh;
+}
+
+.add-button-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+}
+
+.search-bar-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: stretch;
+}
+
+.expand-collapse-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+}
+
+.device-settings-wrapper {
+    display: flex;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
+    min-height: 0;
+    gap: 10px;
+    padding-top: 10px;
+}
+
+.device-list {
+    width: 400px;
+}
+
+.device-configuration {
+    flex-grow: 1;
+    width: calc(100% - 400px);
+    background: whitesmoke;
+}
+
+.search-bar{
+    width: 100%;
+}
+
+.reset-collapsible-margins {
+    margin: 0 !important;
+}
+
+.edit-placeholder {
+    padding: 20px;
 }
