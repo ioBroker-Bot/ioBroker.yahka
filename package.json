@@ -34,10 +34,10 @@
     "node": ">=20.0.0"
   },
   "dependencies": {
+    "@homebridge/hap-nodejs": "^2.0.2",
     "@iobroker/adapter-core": "^3.2.3",
     "debug": "^4.4.0",
     "dev-null": "^0.1.1",
-    "@homebridge/hap-nodejs": "^2.0.2",
     "ip": "^2.0.1",
     "macaddress": "0.5.3"
   },

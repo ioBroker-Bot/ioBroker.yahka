@@ -1,7 +1,7 @@
 import {
     Characteristic, Formats,
     Units, Perms, Service, uuid,
-} from 'hap-nodejs';
+} from '@homebridge/hap-nodejs';
 
 let hapTypesImported = false;
 export function importHAPCommunityTypesAndFixes() {

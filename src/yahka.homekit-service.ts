@@ -1,6 +1,6 @@
 /// <reference path="./typings/index.d.ts" />
 import { Configuration } from './shared/yahka.configuration';
-import { Accessory, Characteristic, CharacteristicSetCallback, HAPStatus, Service } from 'hap-nodejs';
+import { Accessory, Characteristic, CharacteristicSetCallback, HAPStatus, Service } from '@homebridge/hap-nodejs';
 import {
     IHasIHomeKitBridgeBinding,
     IHomeKitBridgeBinding,

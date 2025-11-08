@@ -1,4 +1,4 @@
-import { Characteristic, Service } from 'hap-nodejs';
+import { Characteristic, Service } from '@homebridge/hap-nodejs';
 import { importHAPCommunityTypesAndFixes } from '../yahka.community.types';
 import { IDictionary } from '../shared/yahka.configuration';
 import { IHAPServiceDefinition, IHAPCharacteristicDefintion } from './admin.config';

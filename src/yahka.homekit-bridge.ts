@@ -6,7 +6,7 @@ import { importHAPCommunityTypesAndFixes } from './yahka.community.types';
 import {
     Accessory, Bridge, uuid, Characteristic,
     Service, MDNSAdvertiser, HAPStorage,
-} from 'hap-nodejs';
+} from '@homebridge/hap-nodejs';
 import { YahkaServiceInitializer } from './yahka.homekit-service';
 import { IHomeKitBridgeBindingFactory, ILogger } from './yahka.interfaces';
 import { readFileSync } from 'node:fs';
