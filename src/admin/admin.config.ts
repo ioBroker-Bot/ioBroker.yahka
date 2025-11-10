@@ -2,10 +2,10 @@ import { IDictionary } from '../shared/yahka.configuration';
 
 export interface IHAPServiceDefinition {
     type: string;
-    characteristics: IDictionary<IHAPCharacteristicDefintion>;
+    characteristics: IDictionary<IHAPCharacteristicDefinition>;
 }
 
-export interface IHAPCharacteristicDefintion {
+export interface IHAPCharacteristicDefinition {
     uuid: string;
     name: string;
     displayName: string;

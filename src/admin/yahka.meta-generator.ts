@@ -1,11 +1,11 @@
 import { Characteristic, Service } from '@homebridge/hap-nodejs';
 import { importHAPCommunityTypesAndFixes } from '../yahka.community.types';
 import { IDictionary } from '../shared/yahka.configuration';
-import { IHAPServiceDefinition, IHAPCharacteristicDefintion } from './admin.config';
+import { IHAPServiceDefinition, IHAPCharacteristicDefinition } from './admin.config';
 
 interface IServiceDictionary {
     services: IDictionary<IHAPServiceDefinition>;
-    characteristics: IDictionary<IHAPCharacteristicDefintion>;
+    characteristics: IDictionary<IHAPCharacteristicDefinition>;
 }
 
 importHAPCommunityTypesAndFixes();
@@ -22,7 +22,7 @@ export function generateMetaDataDictionary(): IServiceDictionary {
     };
 }
 
-function createCharacteristicDescriber(name: string, optional: boolean, char: Characteristic): IHAPCharacteristicDefintion {
+function createCharacteristicDescriber(name: string, optional: boolean, char: Characteristic): IHAPCharacteristicDefinition {
     return {
         uuid: char?.UUID,
         name: name,
@@ -79,7 +79,7 @@ function buildServiceDictionary(availableServices: string[], availableCharacteri
     return serviceDictionary;
 }
 
-function buildCharacteristicDictionary(availableCharacteristics: string[]): IDictionary<IHAPCharacteristicDefintion> {
+function buildCharacteristicDictionary(availableCharacteristics: string[]): IDictionary<IHAPCharacteristicDefinition> {
     const characteristicExclusionList = [
         'super_',
         'Formats',
@@ -88,7 +88,7 @@ function buildCharacteristicDictionary(availableCharacteristics: string[]): IDic
         'serialize',
         'deserialize',
     ];
-    const characteristicDictionary: IDictionary<IHAPCharacteristicDefintion> = {};
+    const characteristicDictionary: IDictionary<IHAPCharacteristicDefinition> = {};
     for (let charName of availableCharacteristics) {
         if (characteristicExclusionList.includes(charName)) {
             continue;

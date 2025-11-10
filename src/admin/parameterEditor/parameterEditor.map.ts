@@ -2,12 +2,11 @@ import { ParameterEditor, IParameterEditorDelegate } from './parameterEditor.bas
 import { createAndCloneTemplateElement } from '../admin.pageLoader';
 import { Utils } from '../admin.utils';
 import { IIoBrokerConversion_MapEntry, isMultiStateParameter, IIoBrokerConversion_Map_Parameters } from '../../yahka.functions/conversion.map';
-import { isObject } from 'util';
 
 export class ParameterEditor_Map extends ParameterEditor {
-    private templateNode: DocumentFragment;
+    private readonly templateNode: DocumentFragment;
     private stateRows: Element[] = [];
-    private lastRow: HTMLDivElement;
+    private readonly lastRow: HTMLDivElement;
     private stateTemplate: HTMLTemplateElement;
     constructor(valueChangeCallback: IParameterEditorDelegate) {
         super(valueChangeCallback);
@@ -69,7 +68,7 @@ export class ParameterEditor_Map extends ParameterEditor {
         if (item === undefined)
             return myRow;
 
-        if (isObject(item.left)) {
+        if (item.left !== null && typeof item.left === 'object') {
             Utils.setInputValue(leftField, JSON.stringify(item.left));
             leftCheck.checked = false;
         } else {
