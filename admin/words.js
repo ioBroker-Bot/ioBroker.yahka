@@ -570,5 +570,13 @@ systemDictionary = {
     "COLLAPSE_ALL_GROUPS_BUTTON": {
         "en": "Collapse all groups",
         "de": "Alle Gruppen einklappen",
+    },
+    "MODAL_MODE_ENABLE": {
+        "en": "Switch to modal mode",
+        "de": "Auf Modal-Modus schalten",
+    },
+    "MODAL_MODE_DISABLE": {
+        "en": "Switch to two column mode",
+        "de": "Auf 2-Spalten-Modus schalten",
     }
 };

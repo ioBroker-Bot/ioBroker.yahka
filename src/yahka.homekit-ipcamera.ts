@@ -24,7 +24,7 @@ import {
     AudioStreamingSamplerate,
     Categories,
     MDNSAdvertiser,
-} from 'hap-nodejs';
+} from '@homebridge/hap-nodejs';
 import { IHomeKitBridgeBindingFactory, ILogger } from './yahka.interfaces';
 import { Configuration } from './shared/yahka.configuration';
 import { YahkaServiceInitializer } from './yahka.homekit-service';

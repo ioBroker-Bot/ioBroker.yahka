@@ -121,7 +121,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.NotificationText = exports.NotificationCode = exports.VolatileOrganicCompoundPeakLevel = exports.VolatileOrganicCompoundLevel = exports.VolatileOrganicCompoundDetected = exports.SodiumDioxidePeakLevel = exports.SodiumDioxideLevel = exports.SodiumDioxideDetected = exports.OzonePeakLevel = exports.OzoneLevel = exports.OzoneDetected = exports.NitrogenDioxidePeakLevel = exports.NitrogenDioxideLevel = exports.NitrogenDioxideDetected = exports.AirFlow = exports.NoiseLevel = exports.AtmosphericPressureLevel = exports.EveResetTotal = exports.EveTimesOpened = exports.EveLastAction = exports.EveClosedDuration = exports.EveOpenDuration = exports.EveAirQuality = exports.BatteryLevel = exports.KilowattVoltAmpereHour = exports.KilowattHours = exports.VoltAmperes = exports.Watts = exports.Amperes = exports.Volts = exports.MediaHeight = exports.MediaWidth = exports.MediaTypeIdentifier = exports.StillImage = exports.MediaItemDuration = exports.MediaItemArtist = exports.MediaItemAlbumName = exports.MediaItemName = exports.MediaCurrentPosition = exports.PlaybackSpeed = exports.RepeatMode = exports.ShuffleMode = exports.SkipBackward = exports.SkipForward = exports.PlaybackState = exports.Muting = exports.AudioVolume = exports.VideoDataURL = exports.AudioDataURL = exports.Timestamp = void 0;
 exports.NotificationService = exports.VolatileOrganicCompoundSensor = exports.SodiumDioxideSensor = exports.OzoneSensor = exports.NitrogenDioxideSensor = exports.AirFlowSensor = exports.NoiseLevelSensor = exports.AtmosphericPressureSensor = exports.SecurityCameraService = exports.StillImageService = exports.MediaInformationService = exports.PlaybackDeviceService = exports.AudioDeviceService = exports.UPSLoadPercent = exports.BatteryVoltageDC = exports.OutputVoltageAC = exports.InputVoltageAC = exports.DewPoint = exports.Latency = exports.Ping = exports.UploadSpeed = exports.DownloadSpeed = exports.LastEventTime = void 0;
 exports.importHAPCommunityTypesAndFixes = importHAPCommunityTypesAndFixes;
-const hap_nodejs_1 = __webpack_require__(/*! hap-nodejs */ "hap-nodejs");
+const hap_nodejs_1 = __webpack_require__(/*! @homebridge/hap-nodejs */ "@homebridge/hap-nodejs");
 let hapTypesImported = false;
 function importHAPCommunityTypesAndFixes() {
     if (hapTypesImported) {
@@ -1223,7 +1223,7 @@ exports.TIOBrokerConversionBase = TIOBrokerConversionBase;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.TIoBrokerConversion_HomematicControlMode_To_CoolingState = exports.TIoBrokerConversion_HomematicDirection_To_PositionState = void 0;
 const conversion_base_1 = __webpack_require__(/*! ./conversion.base */ "./yahka.functions/conversion.base.ts");
-const hap_nodejs_1 = __webpack_require__(/*! hap-nodejs */ "hap-nodejs");
+const hap_nodejs_1 = __webpack_require__(/*! @homebridge/hap-nodejs */ "@homebridge/hap-nodejs");
 class TIoBrokerConversion_HomematicDirection_To_PositionState extends conversion_base_1.TIOBrokerConversionBase {
     toHomeKit(value) {
         let num = conversion_base_1.TIOBrokerConversionBase.castToNumber(value);
@@ -2312,7 +2312,7 @@ exports.deinitHAP = deinitHAP;
 const debug = __webpack_require__(/*! debug */ "debug");
 const util = __webpack_require__(/*! node:util */ "node:util");
 const yahka_community_types_1 = __webpack_require__(/*! ./yahka.community.types */ "./yahka.community.types.ts");
-const hap_nodejs_1 = __webpack_require__(/*! hap-nodejs */ "hap-nodejs");
+const hap_nodejs_1 = __webpack_require__(/*! @homebridge/hap-nodejs */ "@homebridge/hap-nodejs");
 const yahka_homekit_service_1 = __webpack_require__(/*! ./yahka.homekit-service */ "./yahka.homekit-service.ts");
 const node_fs_1 = __webpack_require__(/*! node:fs */ "node:fs");
 const pjson = JSON.parse((0, node_fs_1.readFileSync)(`${__dirname}/package.json`).toString());
@@ -2456,7 +2456,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.THomeKitIPCamera = void 0;
 /// <reference path="./typings/index.d.ts" />
 const node_child_process_1 = __webpack_require__(/*! node:child_process */ "node:child_process");
-const hap_nodejs_1 = __webpack_require__(/*! hap-nodejs */ "hap-nodejs");
+const hap_nodejs_1 = __webpack_require__(/*! @homebridge/hap-nodejs */ "@homebridge/hap-nodejs");
 const yahka_homekit_service_1 = __webpack_require__(/*! ./yahka.homekit-service */ "./yahka.homekit-service.ts");
 class THomeKitIPCamera {
     constructor(camConfig, FBridgeFactory, FLogger) {
@@ -2784,7 +2784,7 @@ exports.THomeKitIPCamera = THomeKitIPCamera;
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.YahkaServiceInitializer = void 0;
-const hap_nodejs_1 = __webpack_require__(/*! hap-nodejs */ "hap-nodejs");
+const hap_nodejs_1 = __webpack_require__(/*! @homebridge/hap-nodejs */ "@homebridge/hap-nodejs");
 class YahkaServiceInitializer {
     constructor(FBridgeFactory, FLogger) {
         this.FBridgeFactory = FBridgeFactory;
@@ -3189,6 +3189,16 @@ function convertStateValueToNumber(state) {
 
 /***/ }),
 
+/***/ "@homebridge/hap-nodejs":
+/*!*****************************************!*\
+  !*** external "@homebridge/hap-nodejs" ***!
+  \*****************************************/
+/***/ ((module) => {
+
+module.exports = require("@homebridge/hap-nodejs");
+
+/***/ }),
+
 /***/ "@iobroker/adapter-core":
 /*!*****************************************!*\
   !*** external "@iobroker/adapter-core" ***!
@@ -3206,16 +3216,6 @@ module.exports = require("@iobroker/adapter-core");
 /***/ ((module) => {
 
 module.exports = require("debug");
-
-/***/ }),
-
-/***/ "hap-nodejs":
-/*!*****************************!*\
-  !*** external "hap-nodejs" ***!
-  \*****************************/
-/***/ ((module) => {
-
-module.exports = require("hap-nodejs");
 
 /***/ }),
 

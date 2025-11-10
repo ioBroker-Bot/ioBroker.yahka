@@ -2,7 +2,7 @@
 import * as hkBridge from '../../shared/yahka.configuration';
 import { generateMetaDataDictionary } from '../yahka.meta-generator';
 import { IDictionary } from '../../shared/yahka.configuration';
-import { IHAPServiceDefinition, IHAPCharacteristicDefintion, ISelectListEntry } from '../admin.config';
+import { IHAPServiceDefinition, IHAPCharacteristicDefinition, ISelectListEntry } from '../admin.config';
 import { ConfigPageBuilder_Base, IConfigPageBuilderDelegate } from './pageBuilder.base';
 import { IParameterEditorDelegate, IParameterEditor } from '../parameterEditor/parameterEditor.base';
 import { ParameterEditorFactory, inoutFunctions, convFunctions } from '../parameterEditor/parameterEditor.factory';
@@ -118,7 +118,7 @@ export class ConfigPageBuilder_ServicePanel extends ConfigPageBuilder_Base {
         captionElement.classList.add('grey-text');
     }
 
-    private findHAPCharacteristic(serviceDef: IHAPServiceDefinition, characteristicName: string): IHAPCharacteristicDefintion {
+    private findHAPCharacteristic(serviceDef: IHAPServiceDefinition, characteristicName: string): IHAPCharacteristicDefinition {
         if (!serviceDef)
             return undefined;
         const serviceChar = serviceDef.characteristics[characteristicName];
@@ -236,7 +236,7 @@ export class ConfigPageBuilder_ServicePanel extends ConfigPageBuilder_Base {
         translateFragment(parameterContainer);
     }
 
-    private createCharacteristicRow(charDef: IHAPCharacteristicDefintion, serviceConfig: hkBridge.Configuration.IServiceConfig, charConfig: hkBridge.Configuration.ICharacteristicConfig, servicePanel: HTMLElement): DocumentFragment {
+    private createCharacteristicRow(charDef: IHAPCharacteristicDefinition, serviceConfig: hkBridge.Configuration.IServiceConfig, charConfig: hkBridge.Configuration.ICharacteristicConfig, servicePanel: HTMLElement): DocumentFragment {
         let name = charConfig ? charConfig.name : charDef.name;
         let enabled = charConfig ? charConfig.enabled : false;
 
@@ -325,7 +325,7 @@ export class ConfigPageBuilder_ServicePanel extends ConfigPageBuilder_Base {
     private updateCharacteristicProperties(
         rowElement: DocumentFragment,
         serviceConfig: hkBridge.Configuration.IServiceConfig,
-        charDef: IHAPCharacteristicDefintion,
+        charDef: IHAPCharacteristicDefinition,
         charConfig: hkBridge.Configuration.ICharacteristicConfig
     ) {
         let charName = charConfig ? charConfig.name : charDef.name;

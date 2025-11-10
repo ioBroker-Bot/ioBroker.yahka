@@ -1,5 +1,5 @@
 import { TIOBrokerConversionBase, IConversionFunction } from './conversion.base';
-import { Characteristic } from 'hap-nodejs';
+import { Characteristic } from '@homebridge/hap-nodejs';
 
 export class TIoBrokerConversion_HomematicDirection_To_PositionState extends TIOBrokerConversionBase implements IConversionFunction {
     toHomeKit(value: any) {

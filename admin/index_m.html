@@ -135,40 +135,44 @@
 
 <body>
     <div id="adapter-container" class="m">
-        <div class="container-fluid flex-grow" id="yahka_bridge_frame">
-            <div class="row">
-                <div class="col s12 left" style="margin-top: 20px;">
-                    <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-                        <button class="btn" id="yahka_add_device">
-                            <span class="material-symbols-outlined">add</span>
-                            <span class="translate">Add Device</span>
-                        </button>
-                        <button class="btn" id="yahka_add_camera">
-                            <span class="material-symbols-outlined">add</span>
-                            <span class="translate">Add Camera</span>
-                        </button>
-                    </div>
-                </div>
-                <div class="col s12">
-                    <div class="input-field">
-                        <input data-translate-placeholder id="device-search" type="text" placeholder="Search" style="color: white">
-                    </div>
+        <div class="flex-container-col" id="yahka_bridge_frame" style="height: 100%">
+            <div class="add-button-wrapper">
+                <button class="btn" id="yahka_add_device">
+                    <span class="material-symbols-outlined">add</span>
+                    <span class="translate">Add Device</span>
+                </button>
+                <button class="btn" id="yahka_add_camera">
+                    <span class="material-symbols-outlined">add</span>
+                    <span class="translate">Add Camera</span>
+                </button>
+                <button class="btn" id="yahka_expand_all">
+                    <span class="material-symbols-outlined">expand_all</span>
+                    <span class="translate hide-on-small-only">EXPAND_ALL_GROUPS_BUTTON</span>
+                </button>
+                <button class="btn" id="yahka_collapse_all">
+                    <span class="material-symbols-outlined">collapse_all</span>
+                    <span class="translate hide-on-small-only">COLLAPSE_ALL_GROUPS_BUTTON</span>
+                </button>
+            </div>
+            <div class="search-bar-wrapper">
+                <div class="input-field search-bar">
+                    <input data-translate-placeholder id="device-search" type="text" placeholder="Search" style="color: white">
                 </div>
             </div>
-            <div class="row">
-                <div class="col s12">
-                    <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-                        <button class="btn" id="yahka_expand_all">
-                            <span class="material-symbols-outlined">expand_all</span>
-                            <span class="translate hide-on-small-only">EXPAND_ALL_GROUPS_BUTTON</span>
-                        </button>
-                        <button class="btn" id="yahka_collapse_all">
-                            <span class="material-symbols-outlined">collapse_all</span>
-                            <span class="translate hide-on-small-only">COLLAPSE_ALL_GROUPS_BUTTON</span>
-                        </button>
-                    </div>
-                    <ul class="collapsible no-re-init" id="yahka_deviceList">
+            <div class="add-button-wrapper">
+                <button class="btn" id="modal-mode-switch">
+                    <span class="translate">MODAL_MODE_ENABLE</span>
+                </button>
+            </div>
+            <div class="device-settings-wrapper">
+                <div style="overflow-y: auto" class="device-list">
+                    <ul class="collapsible no-re-init reset-collapsible-margins" id="yahka_deviceList">
                     </ul>
+                </div>
+                <div style="overflow-y: auto" class="device-configuration">
+                    <div class="yahka-edit-device-container bg-white" id="yahka-edit-device-container-non-modal">
+                        <div class="edit-placeholder">Click edit to edit device.</div>
+                    </div>
                 </div>
             </div>
             <script>

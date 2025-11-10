@@ -98,12 +98,12 @@ let frontendConfig = {
             replace: ''
           },
           {
-            search: 'const packageJson = JSON.parse((0, node_fs_1.readFileSync)(/*require.resolve*/(/*! ../../../package.json */ "../node_modules/hap-nodejs/package.json"), "utf-8"));',
-            replace: 'const packageJson = __webpack_require__(/*! ../package.json */ "../node_modules/hap-nodejs/package.json");'
+            search: 'const packageJson = JSON.parse((0, node_fs_1.readFileSync)(/*require.resolve*/(/*! ../../../package.json */ "../node_modules/@homebridge/hap-nodejs/package.json"), "utf-8"));',
+            replace: 'const packageJson = __webpack_require__(/*! ../package.json */ "../node_modules/@homebridge/hap-nodejs/package.json");'
           },
           {
-            search: 'const packageJson = JSON.parse((0, node_fs_1.readFileSync)(/*require.resolve*/(/*! ../package.json */ "../node_modules/hap-nodejs/package.json"), "utf-8"));',
-            replace: 'const packageJson = __webpack_require__(/*! ../package.json */ "../node_modules/hap-nodejs/package.json");'
+            search: 'const packageJson = JSON.parse((0, node_fs_1.readFileSync)(/*require.resolve*/(/*! ../package.json */ "../node_modules/@homebridge/hap-nodejs/package.json"), "utf-8"));',
+            replace: 'const packageJson = __webpack_require__(/*! ../package.json */ "../node_modules/@homebridge/hap-nodejs/package.json");'
           }
         ]
       }

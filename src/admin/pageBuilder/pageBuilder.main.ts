@@ -21,6 +21,7 @@ export class ioBroker_YahkaPageBuilder implements IConfigPageBuilderDelegate {
     protected buttonHandler: ioBroker_ButtonHandler;
     protected pageBuilders = new Map<hkBridge.Configuration.TConfigNodeType, IConfigPageBuilder>();
     protected _selectedDeviceConfig: hkBridge.Configuration.IBaseConfigNode = undefined;
+    protected modalMode = false;
 
     constructor(private _bridgeSettings: hkBridge.Configuration.IBridgeConfig, public cameraConfigs: [hkBridge.Configuration.ICameraConfig], private _changeCallback) {
         if (!_bridgeSettings.devices) {
@@ -40,7 +41,7 @@ export class ioBroker_YahkaPageBuilder implements IConfigPageBuilderDelegate {
 
     refreshInputs() {
         setTimeout(() => {
-            const devicePanel = document.querySelector<HTMLElement>('.yahka-edit-device-container');
+            const devicePanel = document.querySelector<HTMLElement>('.yahka-edit-device-container:not(.hide-element)');
             const selectElements = devicePanel.querySelectorAll<HTMLSelectElement>('select');
             selectElements.forEach(selectElement => {
                 M.FormSelect.init(selectElement);
@@ -63,12 +64,43 @@ export class ioBroker_YahkaPageBuilder implements IConfigPageBuilderDelegate {
     bootstrap() {
         let bridgeFrame = <HTMLElement>document.querySelector('#yahka_bridge_frame');
 
+        let modalModeButton = document.querySelector('#modal-mode-switch');
+        modalModeButton.addEventListener('click', () => {
+            this.switchMode();
+        });
+
         this.deviceListHandler.buildDeviceList(bridgeFrame);
         this.buttonHandler.bindBridgeButtons(bridgeFrame);
 
         translateFragment(bridgeFrame);
 
         return bridgeFrame;
+    }
+
+    protected switchMode() {
+        this.modalMode = !this.modalMode;
+
+        let modalModeButton   = document.querySelector('#modal-mode-switch');
+        let nonModalContainer = document.querySelector('#yahka-edit-device-container-non-modal');
+        let deviceList        = document.querySelector('.device-list');
+
+        if (this.modalMode) {
+            nonModalContainer.classList.add('hide-element');
+            nonModalContainer.parentElement.classList.add('hide-element');
+            deviceList.classList.add('full-width');
+            modalModeButton.innerHTML = '<span class="translate">MODAL_MODE_DISABLE</span>';
+            translateFragment(modalModeButton);
+
+            return;
+        }
+
+        nonModalContainer.classList.remove('hide-element');
+        nonModalContainer.parentElement.classList.remove('hide-element');
+        deviceList.classList.remove('full-width');
+        modalModeButton.innerHTML = '<span class="translate">MODAL_MODE_ENABLE</span>';
+        translateFragment(modalModeButton);
+
+        this.refreshSelectedDeviceConfig();
     }
 
     public rebuildDeviceList() {
@@ -124,13 +156,13 @@ export class ioBroker_YahkaPageBuilder implements IConfigPageBuilderDelegate {
             })
         }
 
-        const devicePanel = document.querySelector<HTMLElement>('.yahka-edit-device-container');
+        const devicePanel = document.querySelector<HTMLElement>('.yahka-edit-device-container:not(.hide-element)');
 
         if (devicePanel) {
             devicePanel.innerHTML = '';
         }
 
-        if (!modal.isOpen) {
+        if (!modal.isOpen && this.modalMode) {
             modal.open()
         }
 
@@ -263,6 +295,8 @@ class ioBroker_DeviceListHandler extends ConfigPageBuilder_Base {
                             this.delegate.changeCallback();
                         }
                     }
+
+                    document.querySelector('.yahka-edit-device-container').innerHTML = '<div class="edit-placeholder">Click edit to edit device.</div>';
                 })
             }
 
