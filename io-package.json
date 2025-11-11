@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "yahka",
-    "version": "1.1.5",
+    "version": "1.1.6",
     "news": {
+      "1.1.6": {
+        "en": "Standard test environment has been added.\nRe-Added ability to have 2-column layout in yahka admin.\nDropped support for Node v18.x\nUpgraded hap-nodejs to version 2.0.2",
+        "de": "Eine Standard-Testumgebung wurde hinzugefügt.\nDie Möglichkeit, ein 2-Spalten-Layout im Yahka-Admin zu haben, wurde wieder hinzugefügt.\nUnterstützung für Node v18.x wurde eingestellt\nAktualisierung von hap-nodejs auf Version 2.0.2",
+        "ru": "Добавлена стандартная тестовая среда.\nДобавлена возможность 2-колоночной верстки в админке yahka.\nПрекращена поддержка Node v18.x\nОбновлен hap-nodejs до версии 2.0.2",
+        "pt": "Foi adicionado um ambiente de teste padrão.\nAdicionada a possibilidade de ter um layout de 2 colunas no administrador do yahka.\nSuporte abandonado para Node v18.x\nAtualização do hap-nodejs para a versão 2.0.2",
+        "nl": "Standaard testomgeving is toegevoegd.\nMogelijkheid toegevoegd om 2-koloms opmaak te hebben in yahka admin.\nGeen ondersteuning meer voor Node v18.x\nHap-nodejs bijgewerkt naar versie 2.0.2",
+        "fr": "Un environnement de test standard a été ajouté.\nAjout de la possibilité d'avoir une disposition en 2 colonnes dans l'administration de yahka.\nSuppression de la prise en charge de Node v18.x\nMise à jour de hap-nodejs vers la version 2.0.2",
+        "it": "È stato aggiunto un ambiente di test standard.\nAggiunta la possibilità di avere un layout a 2 colonne nell'amministrazione di yahka.\nEliminato il supporto per Node v18.x\nAggiornato hap-nodejs alla versione 2.0.2",
+        "es": "Se ha añadido un entorno de pruebas estándar.\nSe ha vuelto a añadir la capacidad de tener un diseño de 2 columnas en yahka admin.\nEliminado el soporte para Node v18.x\nActualizado hap-nodejs a la versión 2.0.2",
+        "pl": "Dodano standardowe środowisko testowe.\nPonownie dodano możliwość posiadania układu 2-kolumnowego w panelu administracyjnym yahka.\nZrezygnowano z obsługi Node v18.x\nAktualizacja hap-nodejs do wersji 2.0.2",
+        "uk": "Додано стандартне тестове середовище.\nДодано можливість мати 2-колоночну верстку в адмінці yahka.\nПрипинено підтримку Node v18.x\nОновлено hap-nodejs до версії 2.0.2",
+        "zh-cn": "Standard test environment has been added.\nRe-Added ability to have 2-column layout in yahka admin.\nDropped support for Node v18.x\nUpgraded hap-nodejs to version 2.0.2"
+      },
       "1.1.5": {
         "en": "Updated version of hap-nodejs library to be compatible with Node 22.",
         "de": "Aktualisierte Version der hap-nodejs-Bibliothek für die Kompatibilität mit Node 22.",
